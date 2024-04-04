@@ -44,6 +44,17 @@ return {
     },
   },
 
+  -- Tree custom config
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      git = {
+        enable = true,
+        ignore = false
+      }
+    },
+  },
+
   -- Rust tools
   {
     "mrcjkb/rustaceanvim",
