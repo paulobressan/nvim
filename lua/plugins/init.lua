@@ -50,27 +50,27 @@ return {
     opts = {
       git = {
         enable = true,
-        ignore = false
-      }
+        ignore = false,
+      },
     },
   },
 
   -- Rust tools
   {
     "mrcjkb/rustaceanvim",
-    version = "^4", -- Recommended
+    version = "^4", 
     ft = { "rust" },
     config = function()
-      local bufnr = vim.api.nvim_get_current_buf()
+      local opts = { buffer = vim.api.nvim_get_current_buf() }
 
-      -- todo added more keymap
-      vim.keymap.set("n", "<leader>ca", function()
-        vim.cmd.RustLsp "codeAction" -- supports rust-analyzer's grouping
-      end, { silent = true, buffer = bufnr })
-
-      vim.keymap.set("n", "gd", function()
-        vim.lsp.buf.definition()
-      end, { buffer = bufnr, desc = "goto definition" })
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+      vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+      vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+      vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
     end,
   },
 
