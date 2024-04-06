@@ -58,20 +58,8 @@ return {
   -- Rust tools
   {
     "mrcjkb/rustaceanvim",
-    version = "^4", 
+    version = "^4",
     ft = { "rust" },
-    config = function()
-      local opts = { buffer = vim.api.nvim_get_current_buf() }
-
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-      vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-      vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-      vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-    end,
   },
 
   -- File navigation to look at functions and variables
@@ -81,7 +69,7 @@ return {
     lazy = false,
     config = function()
       require("aerial").setup {
-        open_automatic = false,
+        open_automatic = true,
         -- optionally use on_attach to set keymaps when aerial has attached to a buffer
         on_attach = function(bufnr)
           -- Jump forwards/backwards with '{' and '}'
@@ -129,5 +117,11 @@ return {
         desc = "Flash Treesitter",
       },
     },
+  },
+
+  -- Diffview
+  {
+    "sindrets/diffview.nvim",
+    lazy = false
   },
 }
