@@ -6,6 +6,7 @@ local options = {
     typescript = { "prettier" },
     javascript = { "prettier" },
     json = { "prettier" },
+    markdown = { "prettier" },
   },
 
   -- format_on_save = {
